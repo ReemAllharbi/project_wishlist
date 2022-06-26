@@ -1,0 +1,75 @@
+{% extends 'bace.html' %}
+
+
+{% block head %} 
+<title>Login & Registration</title>
+{% endblock %}
+
+
+
+{% block content %}
+{% if messages %}
+<ul>    
+  {% for message in messages %}    
+  <li class="messagesinfo" {% if message.tags %} class="{{ message.tags }}"{% endif %}>* {{ message }}</li>    
+{% endfor %}
+</ul>
+{% endif %}
+<h1 class="wlcm">Welcome</h1>
+<div class="container">
+
+    <div class="cont">
+      <h2>Register</h2>
+<form action="/registration" method="post">
+  <div class="form-group">
+    <label >Name: </label>
+    <input type="text" class="form-control" name="name" placeholder="Enter your name">
+  </div>
+  <div class="form-group">
+    <label >Username: </label>
+    <input type="text" class="form-control" name="username"  placeholder="Enter username">
+  </div>
+
+  <div class="form-group">
+    <label >Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+    <small id="passwordHelp" class="form-text text-muted">Password must be at least 8 characters.</small>
+  </div>
+
+  <div class="form-group">
+    <label >Confirm Password</label>
+    <input type="password" class="form-control"  name="confirm_password" placeholder="Confirm Password">
+  </div>
+
+  <div class="form-group">
+    <label >Date Hired</label>
+    <input type="date" class="form-control"  name="datehired" placeholder="Date hired">
+  </div>
+  {% csrf_token %}
+  <button type="submit" class="btn btn-primary"> Submit </button>
+</form>
+</div>
+
+
+
+<div class="cont">
+  <h2>Login</h2>
+    <form action="/login" method="post">
+      <div class="form-group">
+        <label >Username: </label>
+        <input type="text" class="form-control" name="username-login"  placeholder="Enter username">
+      </div>
+    
+      <div class="form-group">
+        <label >Password</label>
+        <input type="password" class="form-control" name="password-login" placeholder="Password">
+      </div>
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+</div>
+
+  
+{% endblock %}
+

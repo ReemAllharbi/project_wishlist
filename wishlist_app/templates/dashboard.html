@@ -1,0 +1,76 @@
+{% extends 'bace.html' %}
+{% block head %} 
+<title>My withlist</title>
+{% endblock %}
+
+{% block content %}
+<a class="out" href="/logout">Log Out</a>
+
+<div class="cont">
+  <h2>Hello, {{user.name}}!</h2>
+  <h4>Your wishlist</h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Added by</th>
+        <th scope="col">Added date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for withlist in withlists %}
+      <tr>
+        <td>  <a href="/wish_items/{{withlist.id}}"> {{withlist.item}}</td></a>  
+        <td>{{withlist.added_by.username}}</td>
+        <td>{{withlist.created_at}}</td>
+        <td>
+          {% if withlist.added_by.username != user.username  %}
+          <a href="wish_items/{{withlist.id}}/remove">Remove from my list </a> 
+          {% else %}
+          <a href="wish_items/{{withlist.id}}/delete">Delete </a> 
+          {% endif %}
+         
+      
+    </td>
+      </tr>
+      {% endfor %}
+   
+    </tbody>
+  </table>
+  <a class="view back" href="/wish_items/create">Add Item</a>
+</div>
+
+
+
+
+<div class="cont">
+  <h4>Other users wishlist</h4>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Added by</th>
+      <th scope="col">Added date</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for withlist in withlist_not_include %} 
+    <tr>
+      <td><a href="/wish_items/{{withlist.id}}">{{withlist.item}}</td> </a>
+      <td>{{withlist.added_by.username}}</td>
+      <td>{{withlist.created_at}}</td>
+      <td>
+        <a href="wish_items/{{withlist.id}}/addto">add to my wish </a>
+  </td>
+    </tr>
+ {% endfor %} 
+
+  </tbody>
+</table>
+</div>
+
+{% endblock %}
+
+

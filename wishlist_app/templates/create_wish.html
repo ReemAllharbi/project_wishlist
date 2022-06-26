@@ -1,0 +1,29 @@
+{% extends 'bace.html' %}
+
+
+{% block head %} 
+<title>Create Item</title>
+{% endblock %}
+{% block content %}
+{% if messages %}
+<ul >    
+  {% for message in messages %}    
+  <li class="messagesinfo" {% if message.success %} class="{{messagess}}"{% endif %}>* {{ message }}</li>    
+{% endfor %}
+</ul>
+{% endif %}
+<a class="out" href="/logout">Log Out</a>
+<div class="cont item">
+<h3> Create a new wishlist item:</h3>
+<form action="/wish_items/create" method="post">
+<div class="form-group">
+    <label >Item/Product:</label>
+    <input type="text" class="form-control" name="item_add" placeholder="Add item" >
+  </div>
+  {% csrf_token %}
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+<a class="view back" href="/dashboard">Go Back</a>
+</div>
+{% endblock %}

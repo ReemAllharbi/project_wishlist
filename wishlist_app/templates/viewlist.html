@@ -1,0 +1,27 @@
+{% extends 'bace.html' %}
+
+
+{% block head %} 
+<title>View Wishlist</title>
+{% endblock %}
+
+{% block content %}
+<a class="out" href="/logout">Log Out</a>
+<div class="cont">
+<h1>{{selected_wishlist.item}}</h1>
+<br>
+
+<h3>Users who added this item in thier wishlist:</h3>
+
+
+{% for user in selected_wishlist.user_fav.all %}
+
+<h5>{{user.name}}</h5>
+
+{% endfor %}
+
+<a class="view back" href="/dashboard">Go Back</a>
+</div>
+{% endblock %}
+
+
