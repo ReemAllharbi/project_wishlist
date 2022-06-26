@@ -21,3 +21,23 @@ class Migration(migrations.Migration):
             new_name='added_by',
         ),
     ]
+
+
+
+
+class Migration(migrations.Migration):
+    atomic = False  # Add atomic
+    dependencies = [
+        ('apps', '0005_auto_20190701_2022'),
+    ]
+
+    operations = [
+        migrations.AlterModelOptions(
+            name='article',
+            options={'ordering': ['-pub_date'], 'verbose_name': 'article table', 'verbose_name_plural': 'article table'},
+        ),
+        migrations.AlterModelTable(
+            name='article',
+            table='article',
+        ),
+    ]
